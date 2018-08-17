@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    arr.reduce(callback,[initiaValue])
+    reduce()方法：为数组中的每一个元素依次执行回调函数（不包括数组中被删除或从未被赋值的元素），返回一个具体的结果。
+    callback(执行数组中每个值的函数，包含四个参数)；
+      previousValue(第一项的值或则上一次叠加的结果值，或则是提供的初始值)
+      currentValue(数组中当前被处理的元素)
+      index(当前元素在数组中的索引)
+      array(数组本身)
+    initialValue(作为第一次调用callback的第一个参数，可以控制返回值的格式 )
+   -->
+   <script>
+     //数组求和
+    //  var arr = [1,2,3,4,5];
+    //  sum = arr.reduce(function(prev,cur,index,arr){
+    //   //  console.log(prev,cur,index);
+    //   //  console.log(cur);//2,3,4,5
+    //   //  console.log(prev);//1,3,6,10
+    //   //  return prev+cur;
+    //  });
+    //  console.log(arr,sum);
+      // 1 2 1 
+      // 3 3 2
+      // 6 4 3
+      // 10 5 4
+      // [1, 2, 3, 4, 5] 15
+
+
+//传入一个初始值10
+      // var arr =[1,3,5,7,9];
+      // var sum = arr.reduce(function(x,y){
+      //   console.log(x)
+      //   return x+y;
+      // },10);
+      // console.log(sum)
+
+
+//返回结果为json字符串
+// var arr = [1,3,5,7,9];
+// var reduce = function add(sumSoFar,item){
+//   console.log(sumSoFar.sum)//16
+//   sumSoFar.sum = sumSoFar.sum + item;
+//   return sumSoFar;
+// }
+// var toatl = arr.reduce(reduce,{sum:0});
+// console.log(toatl);//25
+
+
+//不要使用javascript内置的paseInt()函数，利用map和reduce操作实现一个string2init()函数
+// 思路：1.先把字符串13579先变成Array-[1,3,5,7,9]
+//       //2.再利用reduce()就可以写出一个把字符串转换为number的函数；
+//     function string2init(s){
+//       var arr = s.split('').map(function(x){
+//         return +x;
+//       })
+//       return arr.reduce(function(prev,res){
+//         return prev*10+res;
+//       });
+//     }
+// if (string2init('0') === 0 && string2init('12345') === 12345 && string2init('12300') === 12300) {
+//   console.log(string2init.toString().indexOf('parseInt'))
+//     if (string2init.toString().indexOf('parseInt') !== -1) {
+//         console.log('请勿使用parseInt()!');
+//     } else if (string2init.toString().indexOf('Number') !== -1) {
+//         console.log('请勿使用Number()!');
+//     } else {
+//         console.log('测试通过!');
+//     }
+// }
+// else {
+//     console.log('测试失败!');
+// }
+
+// var a = '123'
+// console.log(+a)
+
+
+
+//求一串字符串中每个字母出现的次数。
+// var arrString = 'abcdaabc';
+// var a =arrString.split('').reduce(function(res,cur){
+//   res[cur]?res[cur]++:res[cur]=1;
+//   console.log(res)
+//   return res;
+// },{});
+// console.log(a)
+
+
+// //某同学的期末成绩如下
+// var result =[
+//   {
+//     subject:'math',
+//     score:88
+//   },
+//   {
+//     subject:'chinese',
+//     score:95
+//   },
+//   {
+//     subject:'english',
+//     score:80
+//   },
+// ];
+// //假如该同学的总成绩中，各科所占的比重不同，分别为50%,30%,20%,问如何求出最终的权重结果？
+// var dis ={
+//   math:0.5,
+//   chinese:0.3,
+//   english:0.2
+// }
+// var sum = result.reduce(function(prev,cur){
+//   console.log(prev);
+//   return cur.score+prev;
+// },0)
+// var qsum = result.reduce(function(prev,cur){
+//   return prev+cur.score*dis[cur.subject]
+// },0)
+// console.log(sum,qsum)
+
+
+//请把用户输入的不规范的英文名字，变为首字母大写，其它小写的规范名字。
+//输入:['admin','LISA','barT'],输出:['Admin','Lisa','Bart']
+
+function normalize(arr){
+  return arr.map(function(x){
+    x= x.toLowerCase();
+    x=x[0].toUpperCase()+x.substr(1);
+    return x;
+  })
+}
+// 测试:
+if (normalize(['adam', 'LISA', 'barT']).toString() === ['Adam', 'Lisa', 'Bart'].toString()) {
+    console.log('测试通过!');
+}
+else {
+    console.log('测试失败!');
+}
+
+   </script>
+</body>
+</html>
