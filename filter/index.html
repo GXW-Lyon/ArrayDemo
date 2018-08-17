@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    filter()方法。函数必须，数组中的每一个元素都会执行这个函数。
+    函数参数：1.currentValue必须，当前元素的值。
+            2.index,可选。当前元素的索引值。
+            3.arr,可选。当前元素属于的数组对象。
+   -->
+  <!-- <p>点击按钮获取数组中大于18的所有元素</p>
+  <button onclick="myFunction()">点我</button>
+  <p id="demo"></p>
+  <script>
+    var ages = [32,33,16,40];
+    function checkAdult(age){
+      return age>=18
+    }
+    function myFunction(){
+      document.getElementById('demo').innerHTML = ages.filter(checkAdult,this);
+    }
+  </script> -->
+
+  <script>
+    var ages = [19, 20];
+    var students = [ [24, 'Female', '60kg'],[19, 'Male', '80kg'], [20, 'Female', '50kg'], [20, 'Female', '51kg'], [24, 'Female', '60kg'],[20, 'Female', '51kg']]
+    var filteredData = students.filter(function (value) {
+      //这里的this指向ages
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] === value[0]) {
+              console.log(i)
+                return true;
+            }
+        }
+    }, ages);
+    console.log(filteredData)
+  </script>
+</body>
+</html>
