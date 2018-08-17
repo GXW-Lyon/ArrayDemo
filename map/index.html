@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- map方法返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值 map()方法按照原始数组元素顺序依次处理元素。map()不会对空数组进行检测。map()不会改变原始数组
+  map有三个参数：currentValue必须。当前元素的值。index:可选，当前元素的索引值。arr:可选，当前元素属于的数组对象
+  -->
+<!-- <p>点击按钮将数组中的每个元素乘于输入框指定的值，并返回新数组。</p>
+<p>最小年龄:<input type="number" id="multiplyWith" value="10"></input></p>
+<button onclick="myFunction()">点我</button>
+<p>新数组:<span id="demo"></span></p>
+</body>
+<script>
+  // var numbers = [4,9,16,25];
+  // function myFunction(){
+  //   x = document.getElementById('demo');
+  //   x.innerHTML = numbers.map(Math.sqrt);
+  // }
+  // myFunction();
+
+
+  var numbers =[65,44,12,4];
+  function multiplyArrayElement(num){
+    return num * document.getElementById('multiplyWith').value;
+  }
+  function myFunction(){
+    document.getElementById('demo').innerHTML = numbers.map(multiplyArrayElement)
+  }
+
+</script> -->
+
+<script>
+  var arr =[1,3,5,7,54,43,32,3231]
+  var bbb = arr.map(function(num){
+    return num*5;
+  });
+  console.log(bbb)
+</script>
+</html>
