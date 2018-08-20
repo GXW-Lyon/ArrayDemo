@@ -128,21 +128,71 @@
 //请把用户输入的不规范的英文名字，变为首字母大写，其它小写的规范名字。
 //输入:['admin','LISA','barT'],输出:['Admin','Lisa','Bart']
 
-function normalize(arr){
-  return arr.map(function(x){
-    x= x.toLowerCase();
-    x=x[0].toUpperCase()+x.substr(1);
-    return x;
-  })
-}
-// 测试:
-if (normalize(['adam', 'LISA', 'barT']).toString() === ['Adam', 'Lisa', 'Bart'].toString()) {
-    console.log('测试通过!');
-}
-else {
-    console.log('测试失败!');
-}
+// function normalize(arr){
+//   return arr.map(function(x){
+//     x= x.toLowerCase();
+//     x=x[0].toUpperCase()+x.substr(1);
+//     return x;
+//   })
+// }
+// // 测试:
+// if (normalize(['adam', 'LISA', 'barT']).toString() === ['Adam', 'Lisa', 'Bart'].toString()) {
+//     console.log('测试通过!');
+// }
+// else {
+//     console.log('测试失败!');
+// }
 
+
+//reduce进阶。
+
+//小节 Object.keys()用法。
+// var obj ={'a':'123','b':'345'};
+// console.log(Object.keys(obj));//['a','b']
+
+
+//排序
+// var obj1 ={100:'a',2:'b',7:'c',101:'d'};
+// console.log(Object.keys(obj1))//["2", "7", "100", "101"]
+
+//传入字符串，返回索引
+// var str = 'ab1234';
+// console.log(Object.keys(str));  //[0,1,2,3,4,5]
+
+// var obj2 = Object.create({}, { getFoo : { value : function () { return this.foo } } });
+// console.log(obj2)
+// obj2.foo = 1;
+// console.log(Object.keys(obj2)); // console: ["foo"]
+
+
+
+
+var reducers = {  
+  totalInEuros : function(state, item) {
+    return state.euros += item.price * 0.897424392;
+  },
+  totalInYen : function(state, item) {
+    return state.yens += item.price * 113.852;
+  }
+};
+//使用reduce方法可以完成多维度的数据叠加。
+var manageReducers = function(reducers) {
+  return function(state, item) {
+    return Object.keys(reducers).reduce(//Object.keys(obj)返回一个数组，返回的是对象的属性组成的数组。 Object.keys(reducers)==['totalInEuros','totalInYen']
+      function(nextState, key) {
+        console.log(nextState)
+        reducers[key](state, item);
+        return state;
+      },{}
+    );
+  }
+};
+
+var bigTotalPriceReducer = manageReducers(reducers);
+var initialState ={euros:0,yens:0};
+var items = [{price: 10}, {price: 120}, {price: 1000}];
+var totals = items.reduce(bigTotalPriceReducer, initialState);
+// console.log(totals);
    </script>
 </body>
 </html>
